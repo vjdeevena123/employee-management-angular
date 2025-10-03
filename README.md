@@ -1,11 +1,9 @@
-# EmployeeProject
-
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
-
 # Employee Management System (Angular)
 
 This is a sample **Employee Management System** built with **Angular 20**.  
 It demonstrates real-world Angular features such as **JWT Authentication, HTTP Interceptors, Guards, CRUD operations, Services, and API integration** using a free backend API.
+
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
 
 ---
 
@@ -49,6 +47,8 @@ Username: jamee@123
 Password: jamee
 
 *(Or whatever credentials the free API provides)*
+
+---
 
 ## Development server
 
