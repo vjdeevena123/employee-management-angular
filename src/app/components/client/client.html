@@ -1,0 +1,117 @@
+<div class="row">
+    <!-- Client List -->
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header bg-success">
+                Client List
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Contact Person Name</th>
+                                    <th>Company Name</th>
+                                    <th>Contact No</th>
+                                    <th>City</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (item of clientList; track $index) {
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ item.contactPersonName }}</td>
+                                        <td>{{ item.companyName }}</td>
+                                        <td>{{ item.contactNo }}</td>
+                                        <td>{{ item.city }}</td>
+                                        <td>
+                                            <button class="btn btn-primary" (click)="editClient(item)">Edit</button>
+                                            <button class="btn btn-danger" (click)="deleteClient(item.clientId)">Delete</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Client Form -->
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-success">
+                New Client
+            </div>
+            <div class="card-body">
+                <form #clientForm="ngForm" class="form">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="contactPersonName">Person Name</label>
+                            <input type="text" name="contactPersonName" #personName="ngModel" minlength="5" required [(ngModel)]="clientObj.contactPersonName" class="form-control" placeholder="Enter Person Name">
+                            @if(personName.touched)
+                            {
+                                <div class="text-danger">
+                                    @if (personName.touched && personName?.errors?.['required']) {
+                                        <span> Name is required </span>
+                                    }@else if (personName.touched && personName?.errors?.['minlength'] ) {
+                                        <span>Person Name should be atleast 5 characters</span>
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <div class="col-6">
+                            <label for="companyName">Company Name</label>
+                            <input type="text" id="companyName" name="Company" [(ngModel)]="clientObj.companyName" class="form-control" placeholder="Enter Company Name">
+                        </div>
+                        <div class="col-6">
+                            <label for="contactNo">Contact No</label>
+                            <input type="text" id="contactNo" name="contactNo" [(ngModel)]="clientObj.contactNo" class="form-control" placeholder="Enter Contact No">
+                        </div>
+                        <div class="col-6">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" [(ngModel)]="clientObj.city" class="form-control" placeholder="Enter City">
+                        </div>
+                        <div class="col-6">
+                            <label for="pincode">Pincode</label>
+                            <input type="text" id="pincode" name="pincode" [(ngModel)]="clientObj.pincode" class="form-control" placeholder="Enter Pincode">
+                        </div>
+                        <div class="col-6">
+                            <label for="state">State</label>
+                            <input type="text" id="state" name="state" [(ngModel)]="clientObj.state" class="form-control" placeholder="Enter State">
+                        </div>
+                        <div class="col-6">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" [(ngModel)]="clientObj.address" class="form-control" placeholder="Enter Address"></textarea>
+                        </div>
+                        <div class="col-6">
+                            <label for="employeeStrength">Employee Strength</label>
+                            <input type="text" id="employeeStrength" name="employeeStrength" [(ngModel)]="clientObj.employeeStrength" class="form-control" placeholder="Enter Employee Strength">
+                        </div>
+                        <div class="col-6">
+                            <label for="gstNo">GST No</label>
+                            <input type="text" id="gstNo" name="gstNo" [(ngModel)]="clientObj.gstNo" class="form-control" placeholder="Enter GST No">
+                        </div>
+                        <div class="col-6">
+                            <label for="regNo">Registration No</label>
+                            <input type="text" id="regNo" name="regNo" [(ngModel)]="clientObj.regNo" class="form-control" placeholder="Enter Registration No">
+                        </div>
+                    </div>
+                    <div class="row pt-2">
+                        <div class="col-6 text-center">
+                            <button class="btn btn-success" (click)="saveClient()" [disabled]="!clientForm.valid"> 
+                                {{
+                                clientObj.clientId ? 'Update Client' : 'Save Client'
+                                }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

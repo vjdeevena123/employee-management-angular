@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-12">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Role ID</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let role of roles; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ role.roleId }}</td>
+        <td>{{ role.role }}</td>
+        <td>
+          <select name="" id="">
+            <option [value]="role.roleId">{{ role.role }}</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+    @if(isLoader){
+    <div class="spinner-border text-muted"></div>
+}
+@else{
+    @for (item of designations; track $index) {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">{{ item.designation }}</h4>
+                <p class="card-text">{{ item.designation }}</p>
+                <a href="#" class="card-link">Edit</a>
+                <a href="#" class="card-link">Delete</a>
+            </div>
+        </div>
+    </div>
+    }
+}
+</div>

@@ -1,0 +1,245 @@
+
+<!-- Login Component HTML -->
+<!--<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form [formGroup]="loginForm">
+          Email input
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="email" formControlName="email" name="email" class="form-control form-control-lg"
+              placeholder="Enter a valid email address" />
+          </div>
+
+          Password input
+          <div data-mdb-input-init class="form-outline mb-3">
+            <input type="password" formControlName="password" class="form-control form-control-lg"
+              placeholder="Enter password" />
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="onLogin()" >Login</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="errorMsg" class="text-danger">{{ errorMsg }}</div>
+</section>-->
+
+
+<section class="vh-100 modern-auth">
+ <div class="container h-100 d-flex justify-content-center align-items-center">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card auth-card">
+          <div class="row g-0">
+
+            <!-- Left Side Image -->
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img [src]="activeTab === 'login' 
+                          ? 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp'
+                          : 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw1.webp'"
+                alt="form illustration" class="img-fluid auth-img" />
+            </div>
+
+            <!-- Right Side -->
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                <!-- Tabs -->
+                <ul class="nav nav-pills mb-4 justify-content-center">
+                  <li class="nav-item">
+                    <a class="nav-link" [class.active]="activeTab === 'login'" (click)="activeTab = 'login'">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" [class.active]="activeTab === 'signup'" (click)="activeTab = 'signup'">Sign Up</a>
+                  </li>
+                </ul>
+
+                <!-- LOGIN FORM -->
+                @if (activeTab === 'login') {
+                <form [formGroup]="loginForm" class="auth-form">
+                  <h2 class="fw-bold mb-4">Sign in to your account</h2>
+                  
+                  <div class="form-floating mb-4">
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Email" formControlName="EmailId"
+                      autocomplete="email">
+                    <label for="loginEmail">Email address</label>
+                  </div>
+                  <div class="error-placeholder">
+                    @if (loginForm.get('EmailId')?.touched && loginForm.get('EmailId')?.invalid) {
+                    <small>Valid Email is required</small>
+                    }
+                    </div>
+                    
+                    <!-- Password -->
+                    <div class="form-floating mb-4">
+                      <input type="password" id="loginPassword" class="form-control" placeholder="Password" formControlName="Password"
+                        autocomplete="current-password" (keyup.enter)="onLogin()">
+                      <label for="loginPassword">Password</label>
+                    </div>
+                    <div class="error-placeholder">
+                      @if (loginForm.get('Password')?.touched && loginForm.get('Password')?.invalid) {
+                      <small>Password is required</small>
+                      }
+                    </div>
+
+                    <div class="mb-3 text-end">
+                      <a class="small text-muted forgot-link" (click)="showForgotPassword = true">Forgot Password?</a>
+                    </div>
+                    
+                    <!-- Login Button with spinner -->
+                    <button class="btn btn-modern w-100 mb-3" type="submit" (click)="onLogin()" [disabled]="loginForm.invalid || isLoggingIn">
+                      @if(!isLoggingIn){
+                      <span>Login</span>
+                      }@else{
+                        <span class="spinner-border spinner-border-sm me-2"></span> Logging in...
+                      }
+                    </button>
+                    
+                    <!-- Forgot Password -->
+                    @if (showForgotPassword) {
+                    <div class="extra-links">
+                      <app-forgot-password [closePopup]="closeForgotPassword"></app-forgot-password>
+                    </div>
+                    }
+
+                  <div class="text-center mt-3">
+                    <small class="text-muted">By logging in, you agree to our
+                      <a href="#">Terms</a> & <a href="#">Privacy Policy</a>.
+                    </small>
+                  </div>
+                </form>
+                }
+
+                <!-- SIGNUP FORM -->
+                @if (activeTab === 'signup') {
+                <form [formGroup]="signupForm" class="auth-form">
+                  <h2 class="fw-bold mb-4">Create a new account</h2>
+
+                  <!-- First, Middle, Last Name -->
+                  <div class="row">
+                    <div class="col-md-4 mb-3">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="firstName" placeholder="First Name" formControlName="firstName" />
+                        <label for="firstName">First Name</label>
+                      </div>
+                      <div class="error-placeholder">
+                        @if (signupForm.get('firstName')?.touched && signupForm.get('firstName')?.invalid) {
+                          <small>First Name is required</small>
+                        }
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="middleName" placeholder="Middle Name" formControlName="middleName" />
+                        <label for="middleName">Middle Name</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="lastName" placeholder="Last Name" formControlName="lastName" />
+                        <label for="lastName">Last Name</label>
+                      </div>
+                      <div class="error-placeholder">
+                        @if (signupForm.get('lastName')?.touched && signupForm.get('lastName')?.invalid) {
+                          <small>Last Name is required</small>
+                        }
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="signupEmail" placeholder="Email" formControlName="emailId" />
+                    <label for="signupEmail">Email</label>
+                    <div class="error-placeholder">
+                      @if (signupForm.get('emailId')?.touched && signupForm.get('emailId')?.invalid) {
+                        <small>Valid Email is required</small>
+                      }
+                    </div>
+                  </div>
+
+                  <!-- Mobile Numbers -->
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="mobileNo" placeholder="Mobile No" formControlName="mobileNo" />
+                        <label for="mobileNo">Mobile No</label>
+                      </div>
+                      <div class="error-placeholder">
+                        @if (signupForm.get('mobileNo')?.touched && signupForm.get('mobileNo')?.invalid) {
+                          <small>Mobile No is required</small>
+                        }
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="altMobileNo" placeholder="Alt Mobile No" formControlName="altMobileNo" />
+                        <label for="altMobileNo">Alt Mobile No</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Password -->
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="signupPassword" placeholder="Password" formControlName="password" />
+                    <label for="signupPassword">Password</label>
+                    <div class="error-placeholder">
+                      @if (signupForm.get('password')?.touched && signupForm.get('password')?.invalid) {
+                        <small>Password must be 8+ chars, 1 uppercase, 1 number, 1 special char</small>
+                      }
+                    </div>
+                  </div>
+
+                  <!-- Confirm Password -->
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword" />
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="error-placeholder">
+                      @if (signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched) {
+                        <small>Passwords do not match</small>
+                      }
+                    </div>
+                  </div>
+
+                  <button type="button" class="btn btn-modern w-100" (click)="onSignup()" [disabled]="signupForm.invalid">Sign Up</button>
+                </form>
+                }
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Toast Container -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div class="toast align-items-center text-bg-success border-0" role="alert" [class.show]="toast.show && toast.type === 'success'">
+    <div class="d-flex">
+      <div class="toast-body">
+        ✅ {{ toast.message }}
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" (click)="toast.show = false"></button>
+    </div>
+  </div>
+
+  <div class="toast align-items-center text-bg-danger border-0" role="alert" [class.show]="toast.show && toast.type === 'error'">
+    <div class="d-flex">
+      <div class="toast-body">
+        ❌ {{ toast.message }}
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" (click)="toast.show = false"></button>
+    </div>
+  </div>
+</div>
+

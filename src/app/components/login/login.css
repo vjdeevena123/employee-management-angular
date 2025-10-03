@@ -1,0 +1,114 @@
+/* Full section background */
+.modern-auth {
+  background: linear-gradient(120deg, #ff9a9e 0%, #fad0c4 100%);
+}
+
+/* Card */
+.auth-card {
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+/* Left image */
+.auth-img {
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.5rem 0 0 1.5rem;
+}
+
+/* Tabs */
+.nav-pills .nav-link {
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-weight: 600;
+  color: #6a11cb;
+}
+.nav-pills .nav-link.active {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(106,17,203,0.3);
+}
+
+/* Form */
+.auth-form h2 {
+  font-weight: 600;
+  color: #333;
+}
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+.form-control:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 0 3px rgba(106,17,203,0.15);
+}
+
+/* Button */
+.btn-modern {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  border: none;
+  color: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn-modern:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+/* Forgot Password */
+.forgot-link {
+  cursor: pointer;
+}
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* Error messages - reserve space */
+.error-placeholder {
+  min-height: 18px;
+  font-size: 0.8rem;
+  color: red;
+  margin-top: 2px;
+}
+
+.toast-container {
+  z-index: 1055; /* Always above modal/forms */
+}
+
+.toast {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.4s ease;
+  transform: translateX(100%);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toast-body {
+  font-weight: 500;
+}
+
+.auth-form {
+  min-height: 480px; /* adjust based on tallest form */
+}
+
+.auth-card {
+  transition: height 0.3s ease;
+}
+
+/* Spinner alignment inside button */
+button .spinner-border {
+  vertical-align: middle;
+}
+
+.card {
+  max-height: 80vh;
+  overflow-y: auto;
+}
