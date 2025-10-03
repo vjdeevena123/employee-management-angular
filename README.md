@@ -2,6 +2,54 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
 
+# Employee Management System (Angular)
+
+This is a sample **Employee Management System** built with **Angular 20**.  
+It demonstrates real-world Angular features such as **JWT Authentication, HTTP Interceptors, Guards, CRUD operations, Services, and API integration** using a free backend API.
+
+---
+
+## 🚀 Features
+
+- **Authentication**
+  - Login with JWT token
+  - Token stored securely in browser storage
+  - HTTP Interceptor automatically attaches token to API requests
+
+- **Authorization**
+  - Guards to protect routes (only logged-in users can access employee dashboard)
+
+- **Employee Management**
+  - View employees list
+  - Add, update, and delete employees
+  - Search and filter employees
+
+- **UI/UX**
+  - Responsive design
+  - Reactive Forms with validation
+  - Toast/Alert messages for success & error handling
+
+- **API**
+  - Uses free sample API: [https://freeapi.miniprojectideas.com](https://freeapi.miniprojectideas.com)
+
+---
+
+## 🛠️ Technologies Used
+
+- **Frontend**: Angular 20, TypeScript, RxJS  
+- **UI Styling**: Angular Material / Bootstrap  
+- **Authentication**: JWT with Interceptor  
+- **Backend API**: Free Public API (no custom backend used)  
+
+---
+
+## 🔑 Login Credentials (Sample)
+
+Username: jamee@123
+Password: jamee
+
+*(Or whatever credentials the free API provides)*
+
 ## Development server
 
 To start a local development server, run:
